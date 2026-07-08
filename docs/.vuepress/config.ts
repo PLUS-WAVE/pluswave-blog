@@ -26,7 +26,7 @@ export default defineUserConfig({
 
   theme: plumeTheme({
     // 添加您的部署域名
-    hostname: 'https://plus-wave.github.io/',
+    hostname: 'https://blog.pluswave.top/',
     // copyright: 'CC-BY-NC-SA-4.0',
 
     contributors: {

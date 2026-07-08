@@ -15,6 +15,10 @@ config:
           text: 📑Blogs
           link: /en/blog/
         -
+          theme: brand
+          text: 🏠Homepage
+          link: https://pluswave.top
+        -
           theme: alt
           text: Github →
           link: https://github.com/PLUS-WAVE
