@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🎆 2026新年快乐！致芷涵 💕</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+      background: #0a0a2e;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .new-year-container {
+      position: relative;
+      width: 100%;
+      max-width: 1200px;
+      min-height: 600px;
+      background: linear-gradient(to bottom, #0a0a2e 0%, #1a1a4e 50%, #2a1a3e 100%);
+      border-radius: 20px;
+      overflow: hidden;
+      padding: 40px 20px;
+      text-align: center;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    }
+
+    .title-text {
+      position: relative;
+      z-index: 10;
+      font-size: 3em;
+      background: linear-gradient(45deg, #ff6b6b, #ffd93d, #6bcb77, #4d96ff, #ff6b6b);
+      background-size: 400% 400%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: gradient 3s ease infinite;
+      margin-bottom: 30px;
+      font-weight: bold;
+    }
+
+    @keyframes gradient {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .year-display {
+      position: relative;
+      z-index: 10;
+      font-size: 5em;
+      font-weight: bold;
+      color: #ffd700;
+      text-shadow: 0 0 20px #ffd700, 0 0 40px #ff6b6b, 0 0 60px #ff6b6b;
+      animation: glow 2s ease-in-out infinite alternate;
+      margin-bottom: 30px;
+      margin-top: 20px;
+    }
+
+    @keyframes glow {
+      from { text-shadow: 0 0 20px #ffd700, 0 0 40px #ff6b6b; }
+      to { text-shadow: 0 0 30px #ffd700, 0 0 60px #ff6b6b, 0 0 80px #ffd93d; }
+    }
+
+    .countdown {
+      position: relative;
+      z-index: 10;
+      font-size: 2em;
+      color: #ffd93d;
+      margin: 20px 0;
+      font-family: 'Courier New', monospace;
+      font-weight: bold;
+    }
+
+    .special-message {
+      position: relative;
+      z-index: 10;
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border-radius: 15px;
+      padding: 30px;
+      margin: 30px auto;
+      max-width: 600px;
+      border: 1px solid rgba(255, 182, 193, 0.3);
+    }
+
+    .love-message {
+      font-size: 1.5em;
+      color: #ffb6c1;
+      margin: 30px 0;
+      line-height: 2;
+      text-shadow: 0 0 10px rgba(255, 182, 193, 0.8);
+    }
+
+    .heart {
+      display: inline-block;
+      animation: heartbeat 1s ease infinite;
+    }
+
+    @keyframes heartbeat {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.2); }
+    }
+
+    .signature {
+      font-size: 1.2em;
+      color: #87ceeb;
+      margin-top: 20px;
+      font-style: italic;
+    }
+
+    .stars {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .star {
+      position: absolute;
+      width: 3px;
+      height: 3px;
+      background: white;
+      border-radius: 50%;
+      animation: twinkle 2s ease-in-out infinite;
+    }
+
+    @keyframes twinkle {
+      0%, 100% { opacity: 0.3; }
+      50% { opacity: 1; }
+    }
+
+    .emoji-rain {
+      position: absolute;
+      font-size: 2em;
+      animation: fall 3s linear forwards;
+      z-index: 5;
+    }
+
+    @keyframes fall {
+      0% { transform: translateY(-100px) rotate(0deg); opacity: 0; }
+      10% { opacity: 1; }
+      90% { opacity: 1; }
+      100% { transform: translateY(800px) rotate(360deg); opacity: 0; }
+    }
+
+    canvas#fireworks {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    /* 响应式设计 */
+    @media (max-width: 768px) {
+      .title-text {
+        font-size: 2em;
+      }
+      .year-display {
+        font-size: 3em;
+      }
+      .countdown {
+        font-size: 1.5em;
+      }
+      .love-message {
+        font-size: 1.2em;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="new-year-container" id="celebration">
+    <canvas id="fireworks"></canvas>
+    
+    <div class="stars" id="stars"></div>
+    
+    <div class="title-text"> 2025 → 2026 </div>
+    
+    <div class="year-display">2026</div>
+    
+    <div class="countdown" id="countdown"></div>
+    
+    <div class="special-message">
+      <div class="love-message">
+        亲爱的 <strong>芷涵</strong> <span class="heart">💕</span><br><br>
+        对不起今晚让你等太久了 😢<br>
+        新的一年，我想对你说：<br><br>
+        <span style="color: #ffd93d;">✨ 我会一直陪在你身边 ✨</span><br>
+        <span style="color: #6bcb77;">🌸 新的一年我会更加珍惜你 🌸</span><br>
+        <span style="color: #ff6b6b;">❤️ 愿我们的故事永远精彩 ❤️</span><br><br>
+        <span class="heart">💖</span> 新年快乐 <span class="heart">💖</span>
+      </div>
+      
+      <div class="signature">
+        2025.12.31
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function() {
+      // 创建星星背景
+      const starsContainer = document.getElementById('stars');
+      if (starsContainer) {
+        for (let i = 0; i < 100; i++) {
+          const star = document.createElement('div');
+          star.className = 'star';
+          star.style.left = Math.random() * 100 + '%';
+          star.style.top = Math.random() * 100 + '%';
+          star.style.animationDelay = Math.random() * 2 + 's';
+          starsContainer.appendChild(star);
+        }
+      }
+
+      // 烟花 Canvas 效果
+      const canvas = document.getElementById('fireworks');
+      if (canvas) {
+        const ctx = canvas.getContext('2d');
+        
+        function resizeCanvas() {
+          const container = document.getElementById('celebration');
+          if (container) {
+            canvas.width = container.offsetWidth;
+            canvas.height = container.offsetHeight;
+          }
+        }
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
+
+        const fireworks = [];
+        const particles = [];
+        const colors = ['#ff6b6b', '#ffd93d', '#6bcb77', '#4d96ff', '#ff69b4', '#ffd700', '#ff4500', '#00ff7f'];
+
+        class Firework {
+          constructor() {
+            this.x = Math.random() * canvas.width;
+            this.y = canvas.height;
+            this.targetY = Math.random() * canvas.height * 0.5 + 50;
+            this.speed = 3 + Math.random() * 2;
+            this.color = colors[Math.floor(Math.random() * colors.length)];
+            this.trail = [];
+          }
+
+          update() {
+            this.trail.push({ x: this.x, y: this.y });
+            if (this.trail.length > 10) this.trail.shift();
+            
+            this.y -= this.speed;
+            
+            if (this.y <= this.targetY) {
+              this.explode();
+              return false;
+            }
+            return true;
+          }
+
+          explode() {
+            const particleCount = 80 + Math.floor(Math.random() * 40);
+            for (let i = 0; i < particleCount; i++) {
+              const angle = (Math.PI * 2 / particleCount) * i;
+              const speed = 2 + Math.random() * 3;
+              particles.push(new Particle(this.x, this.y, angle, speed, this.color));
+            }
+          }
+
+          draw() {
+            // 绘制尾迹
+            for (let i = 0; i < this.trail.length; i++) {
+              const alpha = i / this.trail.length;
+              ctx.beginPath();
+              ctx.arc(this.trail[i].x, this.trail[i].y, 2, 0, Math.PI * 2);
+              ctx.fillStyle = `rgba(255, 255, 255, ${alpha * 0.5})`;
+              ctx.fill();
+            }
+            
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, 3, 0, Math.PI * 2);
+            ctx.fillStyle = this.color;
+            ctx.fill();
+          }
+        }
+
+        class Particle {
+          constructor(x, y, angle, speed, color) {
+            this.x = x;
+            this.y = y;
+            this.vx = Math.cos(angle) * speed;
+            this.vy = Math.sin(angle) * speed;
+            this.color = color;
+            this.alpha = 1;
+            this.decay = 0.015 + Math.random() * 0.01;
+            this.gravity = 0.05;
+          }
+
+          update() {
+            this.x += this.vx;
+            this.y += this.vy;
+            this.vy += this.gravity;
+            this.vx *= 0.99;
+            this.vy *= 0.99;
+            this.alpha -= this.decay;
+            return this.alpha > 0;
+          }
+
+          draw() {
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, 2, 0, Math.PI * 2);
+            ctx.fillStyle = this.color.replace(')', `, ${this.alpha})`).replace('rgb', 'rgba');
+            ctx.shadowBlur = 10;
+            ctx.shadowColor = this.color;
+            ctx.fill();
+            ctx.shadowBlur = 0;
+          }
+        }
+
+        let hasTriggeredNewYear = false;
+
+        function animate() {
+          ctx.fillStyle = 'rgba(10, 10, 46, 0.2)';
+          ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+          const now = new Date();
+          const newYear = new Date(2026, 0, 1, 0, 0, 0);
+          const isNewYear = now >= newYear;
+
+          // 只在2026年0点之后才放烟花
+          if (isNewYear) {
+            // 跨年瞬间的特效：连续放多个烟花
+            if (!hasTriggeredNewYear) {
+              hasTriggeredNewYear = true;
+              // 跨年瞬间同时发射多个烟花
+              for (let i = 0; i < 15; i++) {
+                setTimeout(() => {
+                  fireworks.push(new Firework());
+                }, i * 100);
+              }
+            }
+            
+            // 正常的烟花发射
+            if (Math.random() < 0.05) {
+              fireworks.push(new Firework());
+            }
+          }
+
+          // 更新和绘制烟花
+          for (let i = fireworks.length - 1; i >= 0; i--) {
+            fireworks[i].draw();
+            if (!fireworks[i].update()) {
+              fireworks.splice(i, 1);
+            }
+          }
+
+          // 更新和绘制粒子
+          for (let i = particles.length - 1; i >= 0; i--) {
+            particles[i].draw();
+            if (!particles[i].update()) {
+              particles.splice(i, 1);
+            }
+          }
+
+          requestAnimationFrame(animate);
+        }
+
+        animate();
+      }
+
+      // 倒计时
+      function updateCountdown() {
+        const now = new Date();
+        const newYear = new Date(2026, 0, 1, 0, 0, 0);
+        const diff = newYear - now;
+        
+        const countdownEl = document.getElementById('countdown');
+        if (!countdownEl) return;
+
+        if (diff <= 0) {
+          countdownEl.innerHTML = '🎉 新年快乐！Happy New Year 2026！🎉';
+        } else {
+          const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+          const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+          const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+          const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+          
+          if (days > 0) {
+            countdownEl.innerHTML = `距离 2026 还有 ${days}天 ${hours}时 ${minutes}分 ${seconds}秒`;
+          } else {
+            countdownEl.innerHTML = `🔥 ${hours}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')} 🔥`;
+          }
+        }
+      }
+      
+      updateCountdown();
+      setInterval(updateCountdown, 1000);
+
+      // 表情雨
+      function createEmojiRain() {
+        const container = document.getElementById('celebration');
+        if (!container) return;
+        
+        const emojis = ['�', '🎀', '✨', '💕', '🌟', '💖', '🎊', '🎉', '❤️', '💫', '🎈', '🌹', '💝', '⭐'];
+        const emoji = document.createElement('div');
+        emoji.className = 'emoji-rain';
+        emoji.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+        emoji.style.left = Math.random() * 100 + '%';
+        emoji.style.top = (Math.random() * -200 - 50) + 'px'; // 从不同高度开始
+        emoji.style.animationDuration = 3 + Math.random() * 2 + 's';
+        emoji.style.fontSize = (1.5 + Math.random() * 1) + 'em'; // 不同大小
+        container.appendChild(emoji);
+        
+        setTimeout(() => emoji.remove(), 6000);
+      }
+      
+      // 增加表情雨的频率
+      setInterval(createEmojiRain, 150);
+      
+      // 初始时立即生成一批表情
+      for (let i = 0; i < 20; i++) {
+        setTimeout(createEmojiRain, i * 100);
+      }
+    })();
+  </script>
+</body>
+</html>
